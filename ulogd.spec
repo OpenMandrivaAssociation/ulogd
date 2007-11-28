@@ -1,7 +1,7 @@
 Summary:	Ulogd - The userspace logging daemon for netfilter
 Name:		ulogd
 Version:	1.24
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		http://gnumonks.org/projects/ulogd
@@ -9,6 +9,8 @@ Source0:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2.sig
 Patch0:		ulogd-1.24-CVE-2007-0460.diff
 Patch1:		ulogd-1.24-suse_db_cleanup.diff
+# (fc) 1.24-3mdv fix killall path (Mdv bug #35286)
+Patch2:		ulogd-1.24-fixkillall.patch
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	postgresql-devel 
@@ -70,6 +72,7 @@ tcpdump and ethereal.
 # This mostly relates to return values and mysql database connection 
 # reconnection.
 #patch1 -p1 -b .dbclean
+%patch2 -p1 -b .fixkillall
 
 # lib64 fix
 perl -pi -e "s|/lib/|/%{_lib}/|g" configure*
