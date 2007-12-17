@@ -18,7 +18,6 @@ BuildRequires:	libpcap-devel
 BuildRequires:	MySQL-devel
 BuildRequires:	sqlite3-devel
 Requires:	userspace-ipfilter
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 Ulogd is an universal logging daemon for the ULOG target of netfilter, the
