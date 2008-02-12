@@ -25,7 +25,7 @@ Ulogd is an universal logging daemon for the ULOG target of netfilter, the
 Linux 2.4/2.6 firewalling subsystem. Ulogd is able to log packets in various
 formats to different targets (text files, databases, etc.). It has an
 easy-to-use plugin interface to add new protocols and new output targets.
-                                                                                
+
 %package	mysql
 Summary:	MySQL output plugin for ulogd
 Group:		System/Kernel and hardware
@@ -34,7 +34,7 @@ Requires:	%{name} = %{version}
 %description	mysql
 Ulogd-mysql is a MySQL output plugin for ulogd. It enables logging of
 firewall information into a MySQL database.
-                                                                                
+
 %package	pgsql
 Summary:	PostgreSQL output plugin for ulogd
 Group:		System/Kernel and hardware
