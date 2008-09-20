@@ -1,7 +1,7 @@
 Summary:	Ulogd - The userspace logging daemon for netfilter
 Name:		ulogd
 Version:	1.24
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		http://gnumonks.org/projects/ulogd
@@ -11,14 +11,15 @@ Patch0:		ulogd-1.24-CVE-2007-0460.diff
 Patch1:		ulogd-1.24-suse_db_cleanup.diff
 # (fc) 1.24-3mdv fix killall path (Mdv bug #35286)
 Patch2:		ulogd-1.24-fixkillall.patch
+Patch3:		ulogd-build_fix.diff
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	postgresql-devel 
 BuildRequires:	libpcap-devel
-BuildRequires:	MySQL-devel
+BuildRequires:	mysql-devel
 BuildRequires:	sqlite3-devel
 Requires:	userspace-ipfilter
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Ulogd is an universal logging daemon for the ULOG target of netfilter, the
@@ -73,6 +74,7 @@ tcpdump and ethereal.
 # reconnection.
 #patch1 -p1 -b .dbclean
 %patch2 -p1 -b .fixkillall
+%patch3 -p1
 
 # lib64 fix
 perl -pi -e "s|/lib/|/%{_lib}/|g" configure*
@@ -157,5 +159,3 @@ rm -rf %{buildroot}
 %files pcap
 %defattr(-,root,root)
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_PCAP.so
-
-
