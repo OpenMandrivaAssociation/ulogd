@@ -1,7 +1,7 @@
 Summary:	Ulogd - The userspace logging daemon for netfilter
 Name:		ulogd
 Version:	1.24
-Release:	%mkrel 10
+Release:	%mkrel 11
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		http://gnumonks.org/projects/ulogd
