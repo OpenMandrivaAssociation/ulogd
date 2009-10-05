@@ -4,7 +4,7 @@ Version:	1.24
 Release:	%mkrel 11
 License:	GPL
 Group:		System/Kernel and hardware
-URL:		http://gnumonks.org/projects/ulogd
+URL:		http://www.netfilter.org/projects/ulogd/
 Source0:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2.sig
 Patch0:		ulogd-1.24-CVE-2007-0460.diff
@@ -12,6 +12,7 @@ Patch1:		ulogd-1.24-suse_db_cleanup.diff
 # (fc) 1.24-3mdv fix killall path (Mdv bug #35286)
 Patch2:		ulogd-1.24-fixkillall.patch
 Patch3:		ulogd-build_fix.diff
+Patch4:		ulogd-1.24-format_not_a_string_literal_and_no_format_arguments.diff
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	postgresql-devel 
@@ -75,6 +76,7 @@ tcpdump and ethereal.
 #patch1 -p1 -b .dbclean
 %patch2 -p1 -b .fixkillall
 %patch3 -p1
+%patch4 -p0
 
 # lib64 fix
 perl -pi -e "s|/lib/|/%{_lib}/|g" configure*
