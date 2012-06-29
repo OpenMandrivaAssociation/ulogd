@@ -17,7 +17,7 @@ Requires(preun): rpm-helper
 BuildRequires:	autoconf automake libtool
 BuildRequires:	dbi-devel
 BuildRequires:	libpcap-devel
-BuildRequires:	linuxdoc-tools
+BuildRequires:	linuxdoc-tools texlive
 BuildRequires:	mysql-devel
 BuildRequires:	netfilter_acct-devel
 BuildRequires:	netfilter_conntrack-devel
