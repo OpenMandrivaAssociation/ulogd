@@ -1,0 +1,24 @@
+diff -Naur ulogd-2.0.0/acinclude.m4 ulogd-2.0.0.oden/acinclude.m4
+--- ulogd-2.0.0/acinclude.m4	2011-12-19 20:03:21.000000000 +0100
++++ ulogd-2.0.0.oden/acinclude.m4	2012-06-29 11:52:13.000000000 +0200
+@@ -134,7 +134,7 @@
+ 	then
+ 		AC_MSG_RESULT(found mysql_config in $d)
+ 		MYSQL_INC=`$d/mysql_config --include`
+-		MYSQL_LIB=`$d/mysql_config --libs`
++		MYSQL_LIB=`$d/mysql_config --libs | perl -pi -e 's|-Wl,--as-needed||g' | perl -pi -e 's|-rdynamic||g'`
+ 		break
+ 	fi
+ done
+diff -Naur ulogd-2.0.0/configure ulogd-2.0.0.oden/configure
+--- ulogd-2.0.0/configure	2012-06-17 13:10:29.000000000 +0200
++++ ulogd-2.0.0.oden/configure	2012-06-29 11:52:46.000000000 +0200
+@@ -13152,7 +13152,7 @@
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: found mysql_config in $d" >&5
+ $as_echo "found mysql_config in $d" >&6; }
+ 		MYSQL_INC=`$d/mysql_config --include`
+-		MYSQL_LIB=`$d/mysql_config --libs`
++		MYSQL_LIB=`$d/mysql_config --libs | perl -pi -e 's|-Wl,--as-needed||g' | perl -pi -e 's|-rdynamic||g'`
+ 		break
+ 	fi
+ done
