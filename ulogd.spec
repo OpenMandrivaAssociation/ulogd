@@ -16,16 +16,15 @@ Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	autoconf automake libtool
 BuildRequires:	dbi-devel
-BuildRequires:	libpcap-devel
+BuildRequires:	pcap-devel
 BuildRequires:	linuxdoc-tools texlive
 BuildRequires:	mysql-devel
-BuildRequires:	netfilter_acct-devel
-BuildRequires:	netfilter_conntrack-devel
-BuildRequires:	netfilter_log-devel
-BuildRequires:	nfnetlink-devel
-BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig(libnetfilter_acct)
+BuildRequires:	pkgconfig(libnetfilter_conntrack)
+BuildRequires:	pkgconfig(libnetfilter_log)
+BuildRequires:	pkgconfig(libnfnetlink)
 BuildRequires:	postgresql-devel
-BuildRequires:	sqlite3-devel
+BuildRequires:	pkgconfig(sqlite3)	
 Requires:	userspace-ipfilter
 
 %description
