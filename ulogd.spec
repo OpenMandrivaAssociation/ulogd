@@ -1,4 +1,4 @@
-Summary:	Ulogd - The userspace logging daemon for netfilter
+Summary:	- The userspace logging daemon for netfilter
 Name:		ulogd
 Version:	2.0.0
 Release:	1
