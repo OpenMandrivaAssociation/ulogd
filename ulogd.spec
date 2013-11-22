@@ -1,17 +1,17 @@
 Summary:	The userspace logging daemon for netfilter
 Name:		ulogd
-Version:	2.0.0
-Release:	2
+Version:	2.0.2
+Release:	1
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		http://www.netfilter.org/projects/ulogd/
 Source0:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2.sig
-Source2:	ulogd.init
+Source2:	ulogd.service
 # (fc) 1.24-3mdv fix killall path (Mdv bug #35286)
 Patch0:		ulogd-1.24-fixkillall.patch
 Patch1:		ulogd-build_fix.diff
-Patch2:		ulogd-2.0.0-mdv_conf.diff
+Patch2:		omv-ulogd-2.0.2-conf.patch
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	autoconf automake libtool
@@ -84,12 +84,12 @@ firewall information through a libdbi interface.
 %setup -q
 %patch0 -p1 -b .fixkillall
 %patch1 -p1
-%patch2 -p0
+%patch2 -p1
 
 # lib64 fix
 perl -pi -e "s|/lib/|/%{_lib}/|g" configure*
 
-cp %{SOURCE2} ulogd.init
+cp %{SOURCE2} ulogd.service
 
 %build
 autoreconf -fi
@@ -121,8 +121,8 @@ make -C doc
 %makeinstall_std
 
 # install initscript
-install -d %{buildroot}%{_initrddir}
-install -m0755 ulogd.init %{buildroot}%{_initrddir}/ulogd
+install -d %{buildroot}%{_unitdir}
+install -m0755 ulogd.service %{buildroot}%{_unitdir}/ulogd.service
 
 # install logrotate file
 install -d %{buildroot}/%{_sysconfdir}/logrotate.d
@@ -153,10 +153,10 @@ rm -f %{buildroot}%{_libdir}/ulogd/*.*a
 %doc doc/mysql-ulogd2.sql
 %doc doc/pgsql-ulogd2-flat.sql
 %doc doc/pgsql-ulogd2.sql
-%attr(0755,root,root) %{_initrddir}/ulogd
 %attr(0600,root,root) %config(noreplace) %{_sysconfdir}/ulogd.conf
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/logrotate.d/ulogd
 %attr(0755,root,root) %{_sbindir}/ulogd
+%{_unitdir}/ulogd.service
 %dir %{_libdir}/ulogd
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_filter_HWHDR.so
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_filter_IFINDEX.so
@@ -177,6 +177,7 @@ rm -f %{buildroot}%{_libdir}/ulogd/*.*a
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_output_NACCT.so
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_output_OPRINT.so
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_output_SYSLOG.so
+%attr(0755,root,root) %{_libdir}/ulogd/ulogd_output_GRAPHITE.so
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_output_XML.so
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_raw2packet_BASE.so
 %dir /var/lib/ulogd
