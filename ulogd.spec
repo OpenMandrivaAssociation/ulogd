@@ -24,7 +24,8 @@ BuildRequires:	pkgconfig(libnetfilter_conntrack)
 BuildRequires:	pkgconfig(libnetfilter_log)
 BuildRequires:	pkgconfig(libnfnetlink)
 BuildRequires:	postgresql-devel
-BuildRequires:	pkgconfig(sqlite3)	
+BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	linuxdoc-tools
 Requires:	userspace-ipfilter
 
 %description
