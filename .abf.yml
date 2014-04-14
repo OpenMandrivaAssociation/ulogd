@@ -1,2 +1,5 @@
+removed_sources:
+  ulogd-2.0.0.tar.bz2: c32ed975c60cc4b2485b3f8403b864378449f158
 sources:
-  "ulogd-2.0.0.tar.bz2": c32ed975c60cc4b2485b3f8403b864378449f158
+  ulogd-2.0.4.tar.bz2: f5e09d9e9a6c7ab8966d22ed8d6e90196aab3fb3
+  ulogd-2.0.4.tar.bz2.sig: 018d630ea450fdc09358a77f30c08bfbdb5437c8

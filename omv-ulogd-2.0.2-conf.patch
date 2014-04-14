@@ -1,5 +1,5 @@
 diff --git a/ulogd.conf.in b/ulogd.conf.in
-index f4f63d9..66ffa0b 100644
+index 8893175..87f1acf 100644
 --- a/ulogd.conf.in
 +++ b/ulogd.conf.in
 @@ -8,7 +8,7 @@
@@ -7,63 +7,73 @@ index f4f63d9..66ffa0b 100644
  
  # logfile for status messages
 -logfile="/var/log/ulogd.log"
-+logfile="/var/log/uglod/ulogd.log"
++logfile="/var/log/ulogd/ulogd.log"
  
  # loglevel: debug(1), info(3), notice(5), error(7) or fatal(8) (default 5)
  # loglevel=1
-@@ -179,25 +179,25 @@ nlgroup=1
+@@ -183,25 +183,25 @@ nlgroup=1
  socket_path="/tmp/nuauth_ulogd2.sock"
  
  [emu1]
 -file="/var/log/ulogd_syslogemu.log"
-+file="/var/log/uglod/ulogd_syslogemu.log"
++file="/var/log/ulogd/ulogd_syslogemu.log"
  sync=1
  
  [op1]
 -file="/var/log/ulogd_oprint.log"
-+file="/var/log/uglod/ulogd_oprint.log"
++file="/var/log/ulogd/ulogd_oprint.log"
  sync=1
  
  [gp1]
 -file="/var/log/ulogd_gprint.log"
-+file="/var/log/uglod/ulogd_gprint.log"
++file="/var/log/ulogd/ulogd_gprint.log"
  sync=1
  timestamp=1
  
  [xml1]
 -directory="/var/log/"
-+directory="/var/log/uglod/"
++directory="/var/log/ulogd/"
  sync=1
+ 
+ [json1]
+ sync=1
+-#file="/var/log/ulogd.json"
++#file="/var/log/ulogd/ulogd.json"
+ #timestamp=0
+ # device name to be used in JSON message
+ #device="My awesome Netfilter firewall"
+@@ -211,8 +211,8 @@ sync=1
+ #boolean_label=1
  
  [pcap1]
 -#default file is /var/log/ulogd.pcap
--#file=/var/log/ulogd.pcap
-+#default file is /var/log/uglod/ulogd.pcap
-+#file=/var/log/uglod/ulogd.pcap
+-#file="/var/log/ulogd.pcap"
++#default file is /var/log/ulogd/ulogd.pcap
++#file="/var/log/ulogd/ulogd.pcap"
  sync=1
  
  [mysql1]
-@@ -263,12 +263,12 @@ procedure="INSERT_PACKET_FULL"
+@@ -297,12 +297,12 @@ procedure="INSERT_PACKET_FULL"
  
  [sqlite3_ct]
  table="ulog_ct"
 -db="/var/log/ulogd.sqlite3db"
-+db="/var/log/uglod/ulogd.sqlite3db"
++db="/var/log/ulogd/ulogd.sqlite3db"
  buffer=200
  
  [sqlite3_pkt]
  table="ulog_pkt"
 -db="/var/log/ulogd.sqlite3db"
-+db="/var/log/uglod/ulogd.sqlite3db"
++db="/var/log/ulogd/ulogd.sqlite3db"
  buffer=200
  
  [sys2]
-@@ -276,7 +276,7 @@ facility=LOG_LOCAL2
+@@ -310,7 +310,7 @@ facility=LOG_LOCAL2
  
  [nacct1]
  sync = 1
 -#file = /var/log/ulogd_nacct.log
-+#file = /var/log/uglod/ulogd_nacct.log
++#file = /var/log/ulogd/ulogd_nacct.log
  
  [mark1]
  mark = 1

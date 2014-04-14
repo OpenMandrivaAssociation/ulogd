@@ -1,6 +1,6 @@
 Summary:	The userspace logging daemon for netfilter
 Name:		ulogd
-Version:	2.0.2
+Version:	2.0.4
 Release:	1
 License:	GPL
 Group:		System/Kernel and hardware
