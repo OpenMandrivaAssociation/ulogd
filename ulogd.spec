@@ -25,6 +25,7 @@ BuildRequires:	pkgconfig(libnetfilter_log)
 BuildRequires:	pkgconfig(libnfnetlink)
 BuildRequires:	postgresql-devel
 BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	pkgconfig(jansson)
 BuildRequires:	linuxdoc-tools
 Requires:	userspace-ipfilter
 
@@ -80,6 +81,15 @@ Requires:	%{name} = %{version}
 Ulogd-dbi is a libdbi output plugin for ulogd. It enables logging of
 firewall information through a libdbi interface.
 
+%package	json
+Summary:	JSON framework output plugin for ulogd
+Group:		System/Kernel and hardware
+Requires:	%{name} = %{version}
+
+%description	json
+Ulogd-json is a json output plugin for ulogd. It enables logging of
+firewall information through a json interface.
+
 %prep
 
 %setup -q
@@ -115,7 +125,7 @@ cat >> config.h << EOF
 EOF
 
 %make
-make -C doc
+#make -C doc
 
 %install
 
@@ -148,8 +158,6 @@ rm -f %{buildroot}%{_libdir}/ulogd/*.*a
 
 %files
 %doc COPYING AUTHORS README
-%doc doc/ulogd.txt
-%doc doc/ulogd.html
 %doc doc/mysql-ulogd2-flat.sql
 %doc doc/mysql-ulogd2.sql
 %doc doc/pgsql-ulogd2-flat.sql
@@ -200,3 +208,6 @@ rm -f %{buildroot}%{_libdir}/ulogd/*.*a
 
 %files dbi
 %attr(0755,root,root) %{_libdir}/ulogd/ulogd_output_DBI.so
+
+%files json
+%attr(0755,root,root) %{_libdir}/ulogd/ulogd_output_JSON.so
