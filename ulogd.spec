@@ -1,7 +1,7 @@
 Summary:	The userspace logging daemon for netfilter
 Name:		ulogd
-Version:	2.0.4
-Release:	2
+Version:	2.0.5
+Release:	1
 License:	GPL
 Group:		System/Kernel and hardware
 URL:		http://www.netfilter.org/projects/ulogd/
@@ -17,7 +17,6 @@ Requires(preun): rpm-helper
 BuildRequires:	autoconf automake libtool
 BuildRequires:	dbi-devel
 BuildRequires:	pcap-devel
-BuildRequires:	linuxdoc-tools texlive
 BuildRequires:	mysql-devel
 BuildRequires:	pkgconfig(libnetfilter_acct)
 BuildRequires:	pkgconfig(libnetfilter_conntrack)
@@ -26,7 +25,6 @@ BuildRequires:	pkgconfig(libnfnetlink)
 BuildRequires:	postgresql-devel
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(jansson)
-BuildRequires:	linuxdoc-tools
 Requires:	userspace-ipfilter
 
 %description
@@ -93,20 +91,25 @@ firewall information through a json interface.
 %prep
 
 %setup -q
-%patch0 -p1 -b .fixkillall
-%patch1 -p1
-%patch2 -p1
+%apply_patches
 
 # lib64 fix
 perl -pi -e "s|/lib/|/%{_lib}/|g" configure*
 
 cp %{SOURCE2} ulogd.service
 
+# - make all logs to be kept in a single dir /var/log/ulogd
+# - place sockets in /run instead of /tmp
+sed -i \
+	-e 's:var/log:var/log/ulogd:g' \
+	-e 's:tmp:run:g' \
+	ulogd.conf.in
+
 %build
 autoreconf -fi
 %serverbuild
 
-%configure2_5x \
+%configure \
     --disable-static \
     --enable-shared \
     --with-pgsql=%{_prefix} \
