@@ -91,7 +91,7 @@ firewall information through a json interface.
 %prep
 
 %setup -q
-%apply_patches
+%autopatch -p1
 
 # lib64 fix
 perl -pi -e "s|/lib/|/%{_lib}/|g" configure*
