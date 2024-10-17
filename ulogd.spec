@@ -4,7 +4,7 @@ Version:	2.0.5
 Release:	1
 License:	GPL
 Group:		System/Kernel and hardware
-URL:		http://www.netfilter.org/projects/ulogd/
+URL:		https://www.netfilter.org/projects/ulogd/
 Source0:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.netfilter.org/pub/ulogd/%{name}-%{version}.tar.bz2.sig
 Source2:	ulogd.service
